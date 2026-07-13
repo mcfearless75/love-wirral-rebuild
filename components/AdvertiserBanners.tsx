@@ -19,6 +19,8 @@ export default function AdvertiserBanners() {
           <a
             key={a.name}
             href={a.href}
+            target="_blank"
+            rel="noopener"
             className="group rounded-xl border border-line bg-white px-5 py-4 hover:border-love/40 hover:-translate-y-0.5 transition-all duration-300"
           >
             <div className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.2em] text-ink-soft">

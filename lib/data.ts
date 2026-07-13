@@ -97,14 +97,14 @@ export const ISSUES = [
   { issue: 166, label: "February 2026", cover: COVER_URL, readerUrl: READER_URL },
 ];
 
-// SAMPLE CONTENT — replace with real advertiser banners (name + logo + link) before go-live.
+// Real current advertisers from the live site's "Our Clients" banner strip — swap in their
+// actual logo artwork before go-live; this is a clean text-tile stand-in, not a logo recreation.
 // On the live site these are actual paying advertisers' banner images, each linking to their
 // own website — the online half of the "your advert links straight to your website" promise.
 export const ADVERTISERS = [
-  { name: "Peninsula Print Co.", category: "Print & signage", href: "#" },
-  { name: "Wirral Windows & Doors", category: "Home improvement", href: "#" },
-  { name: "Birkenhead Motor Works", category: "Vehicle servicing", href: "#" },
-  { name: "Heswall Kitchens & Bathrooms", category: "Home renovation", href: "#" },
-  { name: "Wallasey Tyre & Exhaust", category: "Vehicle servicing", href: "#" },
-  { name: "The Wirral Florist", category: "Florist", href: "#" },
+  { name: "Printmaster", category: "Paving & driveways", href: "http://printmasterltd.co.uk/" },
+  { name: "CED Stone Wirral Depot", category: "Landscape & stone supplies", href: "https://www.corfestone.com/" },
+  { name: "Elliott Build & Glaze", category: "Building & glazing", href: "http://www.elliottbuildandglazeltd.co.uk/" },
+  { name: "Les Hill's Carpets and Flooring", category: "Carpets & flooring", href: "https://leshillsflooringcentre.co.uk/" },
+  { name: "Croft Car Sales", category: "Used car sales", href: "http://www.croftcarsales.com/" },
 ];
