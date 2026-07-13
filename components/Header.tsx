@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Heart from "./Heart";
@@ -9,24 +9,56 @@ import { NAV_LINKS } from "@/lib/data";
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, ready: false });
+
+  useEffect(() => {
+    const measure = () => {
+      const activeLink = linkRefs.current[pathname];
+      const nav = navRef.current;
+      if (!activeLink || !nav) {
+        setIndicator((s) => ({ ...s, ready: false }));
+        return;
+      }
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setIndicator({ left: linkRect.left - navRect.left, width: linkRect.width, ready: true });
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
       <div className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <Heart className="w-5 h-5 text-love" />
+          <Heart className="w-5 h-5 text-love heart-pulse" />
           <span className="font-[family-name:var(--font-display)] font-bold text-xl tracking-tight">
             Love Wirral
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-ink-soft">
+        <nav ref={navRef} className="hidden lg:flex items-center gap-7 text-sm font-medium text-ink-soft relative">
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-1.5 h-[2px] bg-love rounded-full transition-all duration-300 ease-out"
+            style={{
+              left: indicator.left,
+              width: indicator.width,
+              opacity: indicator.ready ? 1 : 0,
+            }}
+          />
           {NAV_LINKS.map((l) => {
             const active = pathname === l.href;
             return (
               <Link
                 key={l.href}
                 href={l.href}
+                ref={(el) => {
+                  linkRefs.current[l.href] = el;
+                }}
                 className={`transition-colors hover:text-love ${active ? "text-love" : ""}`}
               >
                 {l.label}

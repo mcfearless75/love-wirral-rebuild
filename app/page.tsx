@@ -3,6 +3,8 @@ import Countdown from "@/components/Countdown";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import Heart from "@/components/Heart";
+import CountUp from "@/components/CountUp";
+import TiltCard from "@/components/TiltCard";
 import AdvertiserBanners from "@/components/AdvertiserBanners";
 import { AREAS, COVER_URL, EMAIL, PHONE, PHONE_HREF, READER_URL } from "@/lib/data";
 
@@ -15,6 +17,13 @@ const TEASERS = [
   { href: "/contact", title: "Get in touch", copy: "Book your advert, share a story, or ask us anything." },
 ];
 
+const STATS = [
+  { value: 8500, format: true, label: "copies every month" },
+  { value: 14, suffix: " yrs", label: "publishing since 2012" },
+  { value: 47, label: "delivery areas across Wirral" },
+  { value: 0, prefix: "£", label: "contracts or tie-ins" },
+];
+
 export default function Home() {
   return (
     <main>
@@ -22,32 +31,40 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-5 pt-14 pb-20 md:pt-20 md:pb-28 grid md:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
           <div>
-            <Eyebrow>Est. 2012 · Issue 171 · In print &amp; online</Eyebrow>
-            <h1 className="font-[family-name:var(--font-display)] font-bold text-[2.6rem] leading-[1.05] md:text-6xl mt-5 tracking-tight">
-              The magazine Wirral
-              <span className="text-love"> actually reads.</span>
-            </h1>
-            <p className="mt-6 text-lg text-ink-soft max-w-lg leading-relaxed">
-              8,500 copies hand-delivered free across the peninsula every single month —
-              New Brighton to Neston, and everywhere in between. Local news, what&rsquo;s on,
-              and the businesses that keep Wirral running.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/rates"
-                className="bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-love transition-colors"
-              >
-                Advertise from £50
-              </Link>
-              <a
-                href={READER_URL}
-                target="_blank"
-                rel="noopener"
-                className="border-2 border-ink font-semibold px-6 py-3.5 rounded-full hover:border-love hover:text-love transition-colors"
-              >
-                Read Issue 171 →
-              </a>
-            </div>
+            <Reveal delay={0}>
+              <Eyebrow>Est. 2012 · Issue 171 · In print &amp; online</Eyebrow>
+            </Reveal>
+            <Reveal delay={100}>
+              <h1 className="font-[family-name:var(--font-display)] font-bold text-[2.6rem] leading-[1.05] md:text-6xl mt-5 tracking-tight">
+                The magazine Wirral
+                <span className="text-love"> actually reads.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="mt-6 text-lg text-ink-soft max-w-lg leading-relaxed">
+                8,500 copies hand-delivered free across the peninsula every single month —
+                New Brighton to Neston, and everywhere in between. Local news, what&rsquo;s on,
+                and the businesses that keep Wirral running.
+              </p>
+            </Reveal>
+            <Reveal delay={340}>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/rates"
+                  className="bg-ink text-white font-semibold px-6 py-3.5 rounded-full hover:bg-love transition-colors"
+                >
+                  Advertise from £50
+                </Link>
+                <a
+                  href={READER_URL}
+                  target="_blank"
+                  rel="noopener"
+                  className="border-2 border-ink font-semibold px-6 py-3.5 rounded-full hover:border-love hover:text-love transition-colors"
+                >
+                  Read Issue 171 →
+                </a>
+              </div>
+            </Reveal>
           </div>
 
           <div className="relative flex justify-center md:justify-end">
@@ -87,15 +104,12 @@ export default function Home() {
       {/* ── Stats ────────────────────────────────────── */}
       <section className="bg-paper-warm border-b border-line">
         <div className="mx-auto max-w-6xl px-5 py-14 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            ["8,500", "copies every month"],
-            ["14 yrs", "publishing since 2012"],
-            ["47", "delivery areas across Wirral"],
-            ["£0", "contracts or tie-ins"],
-          ].map(([n, l]) => (
-            <Reveal key={l}>
-              <div className="font-[family-name:var(--font-display)] font-bold text-4xl md:text-5xl text-love-deep">{n}</div>
-              <div className="text-sm text-ink-soft mt-2">{l}</div>
+          {STATS.map((s, i) => (
+            <Reveal key={s.label} delay={i * 90}>
+              <div className="font-[family-name:var(--font-display)] font-bold text-4xl md:text-5xl text-love-deep">
+                <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} format={s.format} />
+              </div>
+              <div className="text-sm text-ink-soft mt-2">{s.label}</div>
             </Reveal>
           ))}
         </div>
@@ -111,19 +125,21 @@ export default function Home() {
         </Reveal>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {TEASERS.map((t) => (
-            <Reveal key={t.href}>
-              <Link
-                href={t.href}
-                className="group block h-full rounded-2xl p-6 bg-white border border-line hover:border-love/40 hover:-translate-y-1 transition-all duration-300"
-              >
-                <Heart className="w-5 h-5 text-love" />
-                <h3 className="font-[family-name:var(--font-display)] font-bold text-xl mt-4">{t.title}</h3>
-                <p className="text-sm text-ink-soft mt-2 leading-relaxed">{t.copy}</p>
-                <span className="inline-block mt-4 text-sm font-semibold text-love-deep group-hover:translate-x-1 transition-transform">
-                  Explore →
-                </span>
-              </Link>
+          {TEASERS.map((t, i) => (
+            <Reveal key={t.href} delay={(i % 3) * 80}>
+              <TiltCard>
+                <Link
+                  href={t.href}
+                  className="group block h-full rounded-2xl p-6 bg-white border border-line hover:border-love/40 transition-colors duration-300"
+                >
+                  <Heart className="w-5 h-5 text-love" />
+                  <h3 className="font-[family-name:var(--font-display)] font-bold text-xl mt-4">{t.title}</h3>
+                  <p className="text-sm text-ink-soft mt-2 leading-relaxed">{t.copy}</p>
+                  <span className="inline-block mt-4 text-sm font-semibold text-love-deep group-hover:translate-x-1 transition-transform">
+                    Explore →
+                  </span>
+                </Link>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
