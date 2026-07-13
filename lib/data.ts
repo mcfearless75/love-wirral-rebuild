@@ -82,11 +82,6 @@ export const TESTIMONIALS = [
   },
 ];
 
-// SAMPLE CONTENT — replace with real monthly answer files before go-live
-export const PUZZLE_MONTHS = [
-  "July 2026", "June 2026", "May 2026", "April 2026", "March 2026", "February 2026", "January 2026",
-];
-
 // SAMPLE CONTENT — replace with real back issues (cover + reader URL) before go-live
 export const ISSUES = [
   { issue: 171, label: "July 2026", cover: COVER_URL, readerUrl: READER_URL },

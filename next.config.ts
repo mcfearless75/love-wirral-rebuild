@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
-
-const repoName = "love-wirral-rebuild";
-const isGithubPages = process.env.GITHUB_PAGES === "true";
+import { BASE_PATH } from "./lib/site";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: isGithubPages ? `/${repoName}` : "",
-  assetPrefix: isGithubPages ? `/${repoName}/` : "",
+  basePath: BASE_PATH,
+  assetPrefix: BASE_PATH ? `${BASE_PATH}/` : "",
 };
 
 export default nextConfig;
