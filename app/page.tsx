@@ -3,6 +3,7 @@ import Countdown from "@/components/Countdown";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import Heart from "@/components/Heart";
+import AdvertiserBanners from "@/components/AdvertiserBanners";
 import { AREAS, COVER_URL, EMAIL, PHONE, PHONE_HREF, READER_URL } from "@/lib/data";
 
 const TEASERS = [
@@ -125,6 +126,13 @@ export default function Home() {
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── Our Advertisers ──────────────────────────── */}
+      <section className="bg-paper-warm border-y border-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+          <AdvertiserBanners />
         </div>
       </section>
 

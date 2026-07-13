@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import Heart from "@/components/Heart";
+import AdvertiserBanners from "@/components/AdvertiserBanners";
 import { INCLUDED, PREMIUM, RATES } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -76,6 +77,10 @@ export default function RatesPage() {
               </div>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <AdvertiserBanners />
         </div>
 
         <Reveal className="mt-16">

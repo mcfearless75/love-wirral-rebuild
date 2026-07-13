@@ -96,3 +96,15 @@ export const ISSUES = [
   { issue: 167, label: "March 2026", cover: COVER_URL, readerUrl: READER_URL },
   { issue: 166, label: "February 2026", cover: COVER_URL, readerUrl: READER_URL },
 ];
+
+// SAMPLE CONTENT — replace with real advertiser banners (name + logo + link) before go-live.
+// On the live site these are actual paying advertisers' banner images, each linking to their
+// own website — the online half of the "your advert links straight to your website" promise.
+export const ADVERTISERS = [
+  { name: "Peninsula Print Co.", category: "Print & signage", href: "#" },
+  { name: "Wirral Windows & Doors", category: "Home improvement", href: "#" },
+  { name: "Birkenhead Motor Works", category: "Vehicle servicing", href: "#" },
+  { name: "Heswall Kitchens & Bathrooms", category: "Home renovation", href: "#" },
+  { name: "Wallasey Tyre & Exhaust", category: "Vehicle servicing", href: "#" },
+  { name: "The Wirral Florist", category: "Florist", href: "#" },
+];
