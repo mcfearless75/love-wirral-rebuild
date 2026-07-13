@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1c1417;
+  --color-ink-soft: #4a3f43;
+  --color-paper: #faf7f4;
+  --color-paper-warm: #f3ede8;
+  --color-love: #d40f1a;
+  --color-love-deep: #9e001f;
+  --color-love-tint: #fbeceb;
+  --color-line: #e4dbd5;
+
+  --font-display: var(--font-bricolage), sans-serif;
+  --font-body: var(--font-worksans), sans-serif;
+  --font-mono: var(--font-splinemono), monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Signature: delivery-run ticker ---- */
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.ticker-track {
+  display: inline-block;
+  animation: ticker 90s linear infinite;
+  will-change: transform;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Cover lift */
+.cover-card {
+  transform: rotate(1.75deg);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 1px 2px rgba(28, 20, 23, 0.12),
+    0 12px 24px -8px rgba(28, 20, 23, 0.28),
+    0 32px 64px -24px rgba(158, 0, 31, 0.35);
+}
+.cover-card:hover { transform: rotate(0deg) translateY(-6px); }
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
+  .cover-card, .reveal { transition: none; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+::selection { background: var(--color-love); color: #fff; }
+
+:focus-visible {
+  outline: 3px solid var(--color-love);
+  outline-offset: 2px;
+}
